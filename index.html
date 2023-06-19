@@ -27,7 +27,7 @@
   </head>
   <body>
     <!-- NAVBAR START-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fw-bold">
       <div class="container-fluid">
         <a class="navbar-brand ms-3 me-0" href="#">
           <img
@@ -86,9 +86,11 @@
     </nav>
     <!-- NAVBAR END-->
     <!-- JUMBOTRON START -->
-    <section id="jumbotron" class="bg-body-tertiary rounded-3">
+    <section id="jumbotron" class="bg-body-tertiary">
       <div class="container-fluid py-5 text-light">
-        <h1 class="display-1">Where will your travel take you?</h1>
+        <h1 class="display-1 fw-bold col-md-8">
+          Where will your travel take you?
+        </h1>
         <p class="col-md-8 fs-4">
           Discover our growing collection of whole home rentals.
         </p>
@@ -98,9 +100,11 @@
     <!-- JUMBOTRON END -->
     <!-- DATEPICKER START -->
     <section class="container my-5">
-      <div class="row">
-        <div class="col-5">
-          <label for="destination" class="form-label">DESTINATION</label>
+      <div id="search-area" class="row">
+        <div class="col-12 col-md-5 my-2">
+          <label for="destination" class="form-label fw-bold"
+            >DESTINATION</label
+          >
           <div class="input-group">
             <span class="input-group-text" id="cal">
               <svg
@@ -129,8 +133,8 @@
             />
           </div>
         </div>
-        <div class="col-5">
-          <label for="dates" class="form-label">DATES (OPTIONAL)</label>
+        <div class="col-12 col-md-5 my-2">
+          <label for="dates" class="form-label fw-bold">DATES (OPTIONAL)</label>
           <div class="input-group">
             <span class="input-group-text" id="cal">
               <svg
@@ -156,8 +160,16 @@
             />
           </div>
         </div>
-        <div class="col-2 d-flex justify-content-center align-items-end">
-          <button type="submit" class="btn btn-secondary">Search Homes</button>
+        <div
+          class="col-12 col-md-2 d-flex justify-content-center align-items-end my-2"
+        >
+          <button
+            id="search-homes-button"
+            type="submit"
+            class="btn btn-secondary disabled"
+          >
+            Search
+          </button>
         </div>
       </div>
     </section>
@@ -165,9 +177,9 @@
     <!-- RECOMMENDED DESTINATIONS START -->
     <section class="container my-5 px-4">
       <h3>Recommended for You</h3>
-      <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 mt-2">
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -189,7 +201,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -211,7 +223,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -233,7 +245,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -255,7 +267,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -277,7 +289,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -299,7 +311,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
@@ -321,7 +333,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card mb-3">
+          <div class="card">
             <div class="row g-0">
               <div class="col-md-4">
                 <div
