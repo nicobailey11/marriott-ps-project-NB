@@ -64,6 +64,14 @@
   font-weight: 700;
 }
 
+.jumbotron-button {
+  font-family: proxima-nova, arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08125rem;
+  padding: 1rem 2rem;
+}
+
 #search-area {
   margin-left: 0px;
   margin-top: -8rem;
@@ -79,6 +87,9 @@
 
 #search-homes-button {
   width: 100%;
+  font-family: proxima-nova, arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.09rem;
 }
 
 h3 {
