@@ -12,7 +12,7 @@
       href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
       rel="stylesheet"
     />
-    <!-- BOOTSTRAP CDNS -->
+    <!-- BOOTSTRAP CSS CDNS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -62,11 +62,11 @@
                 Destinations
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Nashville</a></li>
+                <li><a class="dropdown-item" href="#">Bali</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">See All</a>
                 </li>
               </ul>
             </li>
@@ -80,7 +80,10 @@
               <a class="nav-link" href="#">About & FAQ</a>
             </li>
           </ul>
-          <button class="btn btn-outline-secondary d-flex">Sign In</button>
+          <li class="nav-item mx-1 d-flex">
+            <i class="bi bi-person-circle me-2"></i
+            ><a class="nav-link" id="sign-in-link" href="#">Sign in</a>
+          </li>
         </div>
       </div>
     </nav>
@@ -185,16 +188,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/nashville.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <p class="card-text">Tennessee</p>
                 </div>
               </div>
             </div>
@@ -207,16 +208,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/marco-island.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Marco Island</h5>
+                  <p class="card-text">Florida</p>
                 </div>
               </div>
             </div>
@@ -229,16 +228,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/delray-beach.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Delray Beach</h5>
+                  <p class="card-text">Florida</p>
                 </div>
               </div>
             </div>
@@ -251,16 +248,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/big-sky.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Big Sky</h5>
+                  <p class="card-text">Montana</p>
                 </div>
               </div>
             </div>
@@ -273,16 +268,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/bass-lake.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Bass Lake</h5>
+                  <p class="card-text">California</p>
                 </div>
               </div>
             </div>
@@ -295,16 +288,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/atlanta.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Atlanta</h5>
+                  <p class="card-text">Georgia</p>
                 </div>
               </div>
             </div>
@@ -317,16 +308,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/algarve.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Algarve</h5>
+                  <p class="card-text">Portugal</p>
                 </div>
               </div>
             </div>
@@ -339,16 +328,14 @@
                 <div
                   class="image-container"
                   style="
-                    background-image: url('assets/images/POPULAR_DESTINATION_250x137_Atlanta.jpg');
+                    background-image: url('assets/images/popular-destinations/bali.jpg');
                   "
                 ></div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Nashville</h5>
-                  <p class="card-text">
-                    <small class="text-body-secondary">Tennessee</small>
-                  </p>
+                  <h5 class="card-title">Bali</h5>
+                  <p class="card-text">Indonesia</p>
                 </div>
               </div>
             </div>
@@ -357,6 +344,7 @@
       </div>
     </section>
     <!-- RECOMMENDED DESTINATIONS END-->
+    <!-- MAPBOX START -->
     <section>
       <div id="map" style="width: 100%; height: 500px"></div>
       <script>
@@ -368,7 +356,9 @@
         });
       </script>
     </section>
+    <!-- MAPBOX END -->
 
+    <!-- BOOTSTRAP JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
