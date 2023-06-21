@@ -45,6 +45,28 @@
   letter-spacing: 0.0875rem;
 }
 
+.dropdown-menu {
+  border-radius: 0;
+  border: none;
+  padding: 0.5em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0.23);
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+@media screen and (min-width: 993px) {
+  .dropdown-menu.show {
+    display: flex;
+  }
+}
+
 #jumbotron {
   background: linear-gradient(
       270deg,
