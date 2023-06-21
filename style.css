@@ -151,3 +151,9 @@ h3 {
   font-size: 0.875rem;
   color: #707070;
 }
+
+footer {
+  font-family: proxima-nova, arial, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
