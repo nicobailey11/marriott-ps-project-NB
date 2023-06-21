@@ -66,12 +66,13 @@ const map = new mapboxgl.Map({
 });
 
 PLACES.forEach((place) => {
-  // add a dropdown item to the nav menu with goToMap function
+  // add a dropdown item to the nav menu with centerOnMap function
   const megaMenuCol1 = document.getElementById("mega-menu-col-1");
   const megaMenuCol2 = document.getElementById("mega-menu-col-2");
+  // nav button populating place name and scroll to map
   let menuItemContent = `
-  <li onclick="goToMap('${place.name}')">
-    <a class="dropdown-item" href="#">
+  <li onclick="centerOnMap('${place.name}')">
+    <a class="dropdown-item" href="#map">
       ${place.name}
     </a>
   </li>
@@ -92,12 +93,11 @@ PLACES.forEach((place) => {
     .addTo(map);
 });
 
-function goToMap(placeName) {
+function centerOnMap(placeName) {
   // find place object by name in PLACES array
   let placeObj = PLACES.find((place) => place.name === placeName);
-  // TODO: scroll to map on page
-  document.getElementById("map").scrollIntoView();
 
+  // fly map to the marker clicked on
   map.flyTo({
     center: [placeObj.long, placeObj.lat],
   });
