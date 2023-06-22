@@ -30,6 +30,10 @@
   font-display: swap;
 }
 
+.swal-footer {
+  text-align: center;
+}
+
 .navbar {
   font-family: proxima-nova, arial, sans-serif;
   font-weight: 600;

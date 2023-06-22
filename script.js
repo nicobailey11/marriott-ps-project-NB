@@ -1,62 +1,28 @@
-const PLACES = [
-  {
-    name: "Algarve, Portugal",
-    long: -7.93044,
-    lat: 37.019356,
-    img: "assets/images/popular-destinations/algarve.jpg",
-    category: "beach",
+// trigger sweet alert on page load
+swal({
+  title: "Where do you want to go?",
+  icon: "assets/images/destination-types.png",
+  buttons: {
+    city: {
+      text: "City",
+      value: "city",
+    },
+    beach: {
+      text: "Beach",
+      value: "beach",
+    },
+    mountains: {
+      text: "Mountains",
+      value: "mountains",
+    },
   },
-  {
-    name: "Atlanta, Georgia",
-    long: -84.38633,
-    lat: 33.753746,
-    img: "assets/images/popular-destinations/atlanta.jpg",
-    category: "city",
-  },
-  {
-    name: "Bali, Indonesia",
-    long: 115.188919,
-    lat: -8.409518,
-    img: "assets/images/popular-destinations/bali.jpg",
-    category: "beach",
-  },
-  {
-    name: "Bass Lake, California",
-    long: -119.5664,
-    lat: 37.3247,
-    img: "assets/images/popular-destinations/bass-lake.jpg",
-    category: "mountains",
-  },
-  {
-    name: "Big Sky, Montana",
-    long: -111.25312,
-    lat: 45.26599,
-    img: "assets/images/popular-destinations/big-sky.jpg",
-    category: "mountains",
-  },
-  {
-    name: "Delray Beach, Florida",
-    long: -80.105545,
-    lat: 26.459763,
-    img: "assets/images/popular-destinations/delray-beach.jpg",
-    category: "beach",
-  },
-  {
-    name: "Marco Island, Florida",
-    long: -81.714722,
-    lat: 25.940556,
-    img: "assets/images/popular-destinations/marco-island.jpg",
-    category: "beach",
-  },
-  {
-    name: "Nashville, Tennessee",
-    long: -86.76796,
-    lat: 36.174465,
-    img: "assets/images/popular-destinations/nashville.jpg",
-    category: "city",
-  },
-];
+}).then((value) => {
+  let typePreference = value;
+  console.log(typePreference);
+  findRecommendations(typePreference);
+});
 
+// create map
 mapboxgl.accessToken = "KEY";
 const map = new mapboxgl.Map({
   container: "map",
@@ -65,24 +31,74 @@ const map = new mapboxgl.Map({
   zoom: 11.15,
 });
 
-PLACES.forEach((place) => {
-  // add a dropdown item to the nav menu with centerOnMap function
-  const megaMenuCol1 = document.getElementById("mega-menu-col-1");
-  const megaMenuCol2 = document.getElementById("mega-menu-col-2");
+// find recommendations based on type
+function findRecommendations(type) {
+  // filter PLACES array by type
+  let filteredPlaces = PLACES.filter((place) => place.type === type);
+  console.log(filteredPlaces);
+  // clear recommendations
+  _recommendationsRow.innerHTML = "";
+  // loop through filteredPlaces and do 3 things with each place:
+  // 1. Add place to megamenu using addPlaceToMegaMenu function
+  // 2. Add a card to the recommended for you section
+  // 3. Create a marker on the map using addMarkerToMap function
+  filteredPlaces.forEach((place) => {
+    addPlaceToMegaMenu(place);
+    addCardToRecommendations(place);
+    addMarkerToMap(place);
+  });
+}
+
+// DOM nodes for megamenu columns
+const _megaMenuCol1 = document.getElementById("mega-menu-col-1");
+const _megaMenuCol2 = document.getElementById("mega-menu-col-2");
+
+function addPlaceToMegaMenu(place) {
   // nav button populating place name and scroll to map
   let menuItemContent = `
-  <li onclick="centerOnMap('${place.name}')">
-    <a class="dropdown-item" href="#map">
-      ${place.name}
-    </a>
-  </li>
-  `;
-  if (megaMenuCol1.childElementCount < 4) {
-    megaMenuCol1.insertAdjacentHTML("beforeend", menuItemContent);
+    <li onclick="centerPlaceOnMap('${place.name}')">
+      <a class="dropdown-item" href="#map">
+        ${place.name}
+      </a>
+    </li>
+    `;
+  // add a dropdown item to the nav menu with centerPlaceOnMap function
+  if (_megaMenuCol1.childElementCount < 4) {
+    _megaMenuCol1.insertAdjacentHTML("beforeend", menuItemContent);
   } else {
-    megaMenuCol2.insertAdjacentHTML("beforeend", menuItemContent);
+    _megaMenuCol2.insertAdjacentHTML("beforeend", menuItemContent);
   }
+}
 
+const _recommendationsRow = document.getElementById("recommendations");
+// add a bootstrap html card to the recommended for you section
+function addCardToRecommendations(place) {
+  let cardContent = `
+  <div class="col">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <div
+            class="image-container"
+            style="
+              background-image: url('${place.img}');
+            "
+          ></div>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">${place.name}</h5>
+            <p class="card-text">${place.location}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  _recommendationsRow.insertAdjacentHTML("beforeend", cardContent);
+}
+
+// add a mapbox marker to the map based on a place
+function addMarkerToMap(place) {
   // set a marker with a popup on the map
   var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
     `<p class="text-center">${place.name}</p> <img src="${place.img}" alt="" style="width: 200px; height: auto; border-radius: 4px;">`
@@ -91,9 +107,10 @@ PLACES.forEach((place) => {
     .setLngLat([place.long, place.lat])
     .setPopup(popup)
     .addTo(map);
-});
+}
 
-function centerOnMap(placeName) {
+// fly to a specific place on the map by name
+function centerPlaceOnMap(placeName) {
   // find place object by name in PLACES array
   let placeObj = PLACES.find((place) => place.name === placeName);
 
