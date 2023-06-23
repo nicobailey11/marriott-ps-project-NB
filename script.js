@@ -1,46 +1,27 @@
 // Task 0
-// sign up for a mapbox account and add your access token to the variable below
+// Sign up for a mapbox account and add your access token below. Remove YOUR-ACCESS-TOKEN-HERE, and put your token between the quotes
 mapboxgl.accessToken = "YOUR-ACCESS-TOKEN-HERE";
 
 // Task 1
-// filter places by type from user selection. Use the places "type" property
+// Filter PLACES by type. If the PLACES object type property matches the type parameter,
 function filterPlacesByType(type) {
-  // shortcut
-  // return PLACES.filter((place) => place.type === type);
-  // long way
-  let filteredPlaces = [];
-  for (let i = 1; i < PLACES.length; i++) {
-    if (PLACES[i].type === type) {
-      filteredPlaces.push(PLACES[i]);
-    }
-  }
-  return filteredPlaces;
+  // Step 1: Assign a variable for a new filteredPlaces array
+  // Step 2: Loop through PLACES
+  // Step 3: If the PLACES object type property matches the type parameter, add it to filteredPlaces
+  // Step 4: After the loop, return filteredPlaces
 }
 
 // Task 2
-// populate cards based on filteredPlaces array
-function populateRecommendations(filteredPlaces) {
-  // find dom element for recommendations
-  const recommendationsElement = document.getElementById("recommendations");
-  // clear out recommendations
-  recommendationsElement.innerHTML = "";
-  for (let i = 0; i < filteredPlaces.length; i++) {
-    // use createCard function for each place
-    let placeCard = createCard(filteredPlaces[i]);
-    // add card to recommendations dom element
-    recommendationsElement.appendChild(placeCard);
-  }
+function populateRecommendationCards(filteredPlaces) {
+  // Step 1: Assign a variable to the DOM element with the id of "recommendations"
+  // Step 2: Clear the "recommendations" innerHTML
+  // Step 3: Loop through the filteredPlaces array
+  // Step 4: Create a card for each place using the provided createCard function
+  // Step 5: Add/append each card to the recommendations DOM element
 }
 
 // Task 3
-// find place object in places array by property "name" for displaying on the map
 function findPlaceByName(name) {
-  // shorthand
-  // return PLACES.find((place) => place.name === placeName);
-  // long way
-  for (let i = 1; i < PLACES.length; i++) {
-    if (PLACES[i].name === name) {
-      return PLACES[i];
-    }
-  }
+  // Step 1: Loop through the PLACES array
+  // Step 2: If the place object's name property matches the name parameter, return the place object
 }

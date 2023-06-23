@@ -18,53 +18,35 @@ swal({
   },
 }).then((value) => {
   let typePreference = value;
-  console.log(typePreference);
   findRecommendations(typePreference);
 });
 
-// create map using token
+// create map (requires token)
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v11",
-  center: [-7.93044, 37.019356],
-  zoom: 11.15,
+  center: [-117.130775, 32.834686],
+  zoom: 8,
 });
 
 // find recommendations based on type
 function findRecommendations(type) {
   // use filterPlacesByType function to filter places array
   let filteredPlaces = filterPlacesByType(type);
-
-  // loop through filteredPlaces and do 3 things with each place:
-  // 1. Add place to megamenu using addPlaceToMegaMenu function
-  // 2. Add a card to the recommended for you section
-  populateRecommendations(filteredPlaces);
-  // 3. Create a marker on the map using addMarkerToMap function
-  filteredPlaces.forEach((place) => {
-    addPlaceToMegaMenu(place);
-    // addCardToRecommendations(place);
-    addMarkerToMap(place);
-  });
-}
-
-// DOM nodes for megamenu columns
-const _megaMenuCol1 = document.getElementById("mega-menu-col-1");
-const _megaMenuCol2 = document.getElementById("mega-menu-col-2");
-
-function addPlaceToMegaMenu(place) {
-  // nav button populating place name and scroll to map
-  let menuItemContent = `
-    <li onclick="centerPlaceOnMap('${place.name}')">
-      <a class="dropdown-item" href="#map">
-        ${place.name}
-      </a>
-    </li>
-    `;
-  // add a dropdown item to the nav menu with centerPlaceOnMap function
-  if (_megaMenuCol1.childElementCount < 4) {
-    _megaMenuCol1.insertAdjacentHTML("beforeend", menuItemContent);
+  if (filteredPlaces) {
+    // loop through filteredPlaces and do 3 things with each place:
+    // 1. Add place to megamenu using addPlaceToMegaMenu function
+    // 2. Add a card to the recommended for you section
+    populateRecommendationCards(filteredPlaces);
+    // 3. Create a marker on the map using addMarkerToMap function
+    filteredPlaces.forEach((place) => {
+      addPlaceToMegaMenu(place);
+      // addCardToRecommendations(place);
+      console.log("adding marker to map");
+      addMarkerToMap(place);
+    });
   } else {
-    _megaMenuCol2.insertAdjacentHTML("beforeend", menuItemContent);
+    console.log("filterPlacesByType function error");
   }
 }
 
@@ -95,6 +77,43 @@ function createCard(place) {
   return placeCard;
 }
 
+// fly to a specific place on the map by name
+function centerPlaceOnMap(placeName) {
+  // find place object by name in PLACES array using findPalceByName function
+  let placeObj = findPlaceByName(placeName);
+  if (placeObj) {
+    // scroll to map
+    document.getElementById("map").scrollIntoView();
+    // fly map to the marker clicked on
+    map.flyTo({
+      center: [placeObj.long, placeObj.lat],
+    });
+  } else {
+    console.log("findPlaceByName function error");
+  }
+}
+
+// DOM nodes for megamenu columns
+const _megaMenuCol1 = document.getElementById("mega-menu-col-1");
+const _megaMenuCol2 = document.getElementById("mega-menu-col-2");
+
+function addPlaceToMegaMenu(place) {
+  // nav button populating place name and scroll to map
+  let menuItemContent = `
+    <li onclick="centerPlaceOnMap('${place.name}')">
+      <a class="dropdown-item">
+        ${place.name}
+      </a>
+    </li>
+    `;
+  // add a dropdown item to the nav menu with centerPlaceOnMap function
+  if (_megaMenuCol1.childElementCount < 4) {
+    _megaMenuCol1.insertAdjacentHTML("beforeend", menuItemContent);
+  } else {
+    _megaMenuCol2.insertAdjacentHTML("beforeend", menuItemContent);
+  }
+}
+
 // add a mapbox marker to the map based on a place
 function addMarkerToMap(place) {
   // set a marker with a popup on the map
@@ -105,15 +124,4 @@ function addMarkerToMap(place) {
     .setLngLat([place.long, place.lat])
     .setPopup(popup)
     .addTo(map);
-}
-
-// fly to a specific place on the map by name
-function centerPlaceOnMap(placeName) {
-  // find place object by name in PLACES array using findPalceByName function
-  let placeObj = findPlaceByName(placeName);
-
-  // fly map to the marker clicked on
-  map.flyTo({
-    center: [placeObj.long, placeObj.lat],
-  });
 }
