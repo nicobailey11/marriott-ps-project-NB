@@ -82,7 +82,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 10rem 3rem;
+  padding: 4rem 3rem;
 }
 
 .display-2 {
@@ -130,17 +130,38 @@ h3 {
   background-position: center;
 }
 
+@keyframes expand {
+  from {
+    transform: scale(0);
+    opacity: 0;
+    background: #5470b0;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
 .card {
   font-family: proxima-nova, arial, sans-serif;
   transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
     0.3s box-shadow,
     0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
   cursor: pointer;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  transform: scale(1.02);
 }
 
 .card-title {

@@ -94,6 +94,7 @@ function addCardToRecommendations(place) {
       </div>
     </div>
   </div>`;
+  // add css class to animate card
   _recommendationsRow.insertAdjacentHTML("beforeend", cardContent);
 }
 
