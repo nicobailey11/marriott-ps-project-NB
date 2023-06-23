@@ -1,63 +1,72 @@
-# Marriott Bonvoy Hotels and Villas 🎥
+# Portfolio Project: Marriot Bonvoy Hotels and Villas
 
 ## Contents
 
 - Introduction
-- Starter Code
-- Provided Functions
+- Provided Code
 - Deliverable
-- Extra Help (If Needed)
 
 ## Introduction
 
-For this milestone, you will collaborate with the Netflix development team to prototype a new feature: the random show suggestion. The team has already written code that presents a collection of shows in various genres, as well as code that displays a single show on the webpage. Your objective is to complete the two functions in script.js and ensure that the correct outcome is shown on the page based on the user's selection.
+After you have identified and prioritized the tasks you need to complete, you're going to build out the code for the functionality. There are plenty of comments and scaffolding to help you get the job done in `script.js`.
 
-The final feature should function as follows:
+The site will attempt to find user recommendations when the user clicks on a selection of "city", "beach", or "mountains" from the popup. Keep in mind that the functions build upon each other so **you should complete each task in order!**
 
-When a user clicks on the dropdown menu labeled "Genres," they can make a selection. If they choose a specific genre, a random show from that genre will be displayed on the screen. If they select "Random," a show from any genre will be shown. Choosing "All" is already working.
+> **🗒 Note:** The only file you'll need to code in to complete this project is `script.js`.
 
-The final user experience should function [like this](https://imgur.com/a/pQPkzI8).
+## Provided Code
 
-## Starter Code
+**`PLACES`** - This is an array that lives in the `places.js` file. Go ahead and examine it to see what each place object in the array looks like. Each place has properties that you'll use for filtering.
 
-Take a look at the top of script.js. There are three arrays that correspond to our genres of drama, fantasy, and comedy shows. Each array holds five shows.
-
-You'll notice two empty functions have already been declared in script.js. To complete the Milestone, you'll add code to the body of each of these functions.
-
-⚠️ Warning: Don't change the variables or names of functions! Changing them can cause problems with the end user experience.
-
-## Provided Functions
-
-The Netflix devs have written two helper functions you'll need to use to complete the feature. These functions are defined in `provided.js` but they can be called from `script.js`.
-
-> **🗒 Note:** The only file you'll need to edit to complete the project is `script.js`.
-
-<hr>
-
-1. `getRandomNumber(min, max)`
-
-This function accepts two numbers: `min` and `max`. It returns a randomly generated number in between the supplied min and max (inclusive). Try calling `getRandomNumber(0, 4)` in the console a few times to see how it works.
-
-<hr>
-
-2. `displayShow(show)`
-
-This function accepts the name of a show (such as "The Witcher") and displays it on the page. It uses the _exact formatting_ of the strings in the arrays to find and display the correct show. Try running `displayShow("The Witcher")` and `displayShow("The Queen's Gambit")` in the console and check the page to see what happens.
+**`createCard(place)`** - This is a function that will create a DOM element for a card using a place object. You'll need this in Task 2 to populate user recommendations in the "Recommended for You" section.
 
 ## Deliverable
 
-Below are the requirements for each of the three functions you need to finish in `script.js`.
+### Task 0. **`mapboxgl.accessToken`**
 
-### 1. **`chooseRandomGenre()`**
+You'll need to go to mapbox and [sign up for an API key](https://account.mapbox.com/auth/signup/). It's a free service and you can call on your map 50,000 times a month! If you can't sign up for your own key, ask the HelpHub and they can provide you with one temporarily.
 
-This function should return a random genre that is either "drama", "fantasy", or "comedy". You can use the provided `getRandomNumber()` function to randomly select one of the three possibilities.
+Once you have your key, add it between the quotes. It should look something like this:
+
+```js
+mapboxgl.accessToken =
+  "pk.eyJ1IjoiZGFuNXphZ2hpYW4iLCJhIjoiY2MDVkbTNrcWdreGhpNmVkdyJ9.1QGM2sWs-dwc5r8RiG1-VN";
+```
 
 <hr>
 
-### 2. **`displayRandomShow(genre)`**
+### Task 1. **`filterPlacesByType(typePreference)`**
 
-The parameter `genre` will be a string that is either "drama", "fantasy", "comedy", or "random". If the parameter is "random", you'll use the `chooseRandomGenre()` function from above to reassign the parameter to one of the three possibilities. Otherwise based on the `genre` parameter, you should display a random show from the correspondding array.
+| Parameter        | Type   | Example Argument |
+| ---------------- | ------ | ---------------- |
+| `typePreference` | String | `"beach"`        |
 
-## Extra Help (If Needed)
+This function will return a filtered array of places based off the user's type preference.
 
-You have everything you need to get started and complete this task. You should try it on your own first! Use your decomposition skills to break each task down into smaller steps and don't hesitate to practice your Google Fu. If you're still having trouble, check out `HINTS.md` for some extra help.
+To do this, you'll use the `typePreference` parameter to filter the array of `PLACES` where the `type` property matches. The function will return a new array of `filteredPlaces`.
+
+<hr>
+
+### Task 2. **`populateRecommendationCards(filteredPlaces)`**
+
+| Parameter        | Type  | Example Argument                                                                                                                                                                                                                                                                                     |
+| ---------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filteredPlaces` | Array | `[{name: "Algarve", location: "Portugal", long: -7.93044, lat: 37.019356, img: "assets/images/popular-destinations/algarve.jpg", type: "beach"}, {name: "Bali", location: "Indonesia", long: 115.188919, lat: -8.409518, img: "assets/images/popular-destinations/bali.jpg", type: "beach", }, ...]` |
+
+This function takes in a filtered array of places (for example, all with the type "beach"). You'll start by finding the DOM element with the id of "recommendations" and clear it out.
+
+Then you'll need to loop through the `filteredPlaces` and for each place, use the provided `createCard(place)` function to make a card DOM element.
+
+Finally, you'll append each created card to the "recommendations" DOM element to populate the "Recommended for You" section.
+
+<hr>
+
+### Task 3. **`findPlaceByName(name)`**
+
+| Parameter   | Type   | Example Argument |
+| ----------- | ------ | ---------------- |
+| `placeName` | String | `"Bali"`         |
+
+This function will find an object in the `PLACES` array where the object's `name` property matches the `placeName` parameter. It's used to pin our place on the interactive map and fly to it when clicked from the dropdown menu or the "Recommended for You" section.
+
+To do this, you'll loop through the array of `PLACES` and look for a place object where the `name` property is the same as the `placeName` parameter. The function will return that place object.

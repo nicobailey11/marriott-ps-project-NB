@@ -42,7 +42,6 @@ function findRecommendations(type) {
     filteredPlaces.forEach((place) => {
       addPlaceToMegaMenu(place);
       // addCardToRecommendations(place);
-      console.log("adding marker to map");
       addMarkerToMap(place);
     });
   } else {
