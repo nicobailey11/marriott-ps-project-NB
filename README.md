@@ -1,0 +1,6 @@
+- Project based on Marriott Bonvoy's Homes & Villas homestay website with consulting done by Publicis Sapient.
+- As a part of the Global Tech Experience: Web Development & Coding course, base code was given to us students as a template for completing the project.
+- Base code is forked as a website clone of Homes & Villas.
+- INSTRUCTIONS.md includes a general introduction to the project as well as the tasks outlined for completion by myself.
+- Used Mapbox's global map API
+- This was a very fun project to work on and I was excited with the results :)
