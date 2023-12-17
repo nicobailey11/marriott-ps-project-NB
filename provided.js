@@ -16,6 +16,7 @@ swal({
       value: "mountains",
     },
   },
+  closeOnClickOutside: false,
 }).then((value) => {
   let typePreference = value;
   findRecommendations(typePreference);
@@ -41,7 +42,6 @@ function findRecommendations(type) {
     // 3. Create a marker on the map using addMarkerToMap function
     filteredPlaces.forEach((place) => {
       addPlaceToMegaMenu(place);
-      // addCardToRecommendations(place);
       addMarkerToMap(place);
     });
   } else {
@@ -49,36 +49,9 @@ function findRecommendations(type) {
   }
 }
 
-function createCard(place) {
-  const placeCard = document.createElement("div");
-  placeCard.classList.add("col");
-  placeCard.innerHTML = `
-  <div class="col">
-    <div class="card" onclick="centerPlaceOnMap('${place.name}')">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <div
-            class="image-container"
-            style="
-              background-image: url('${place.img}');
-            "
-          ></div>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">${place.name}</h5>
-            <p class="card-text">${place.location}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>`;
-  return placeCard;
-}
-
 // fly to a specific place on the map by name
 function centerPlaceOnMap(placeName) {
-  // find place object by name in PLACES array using findPalceByName function
+  // find place object by name in PLACES array using findPlaceByName function
   let placeObj = findPlaceByName(placeName);
   if (placeObj) {
     // scroll to map
