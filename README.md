@@ -1,3 +1,4 @@
+# https://nicobailey11.github.io/marriott-ps-project-NB/
 ## Marriott Bonvoy's Homes & Villas Project (with Publicis Sapient)
 - Project based on Marriott Bonvoy's Homes & Villas homestay rental website with consulting by Publicis Sapient.
 - As a part of the Global Tech Experience: Web Development & Coding course, base code was given to us students as a template for completing the project.
